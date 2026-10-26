@@ -1,0 +1,5 @@
+stage_order,stage_name,criteria,count,pct_of_top,step_retention_pct,step_dropoff_pct
+1,1. All Contacted Clients,Total outreach population,45211,100.0,100.0,0.0
+2,2. Engaged Call (> Median Duration),Call duration > 180 seconds,22551,49.88,49.88,50.12
+3,3. Follow-up Nurtured (Campaign > 1),Duration > 180s AND contacts > 1,13341,29.51,59.16,40.84
+4,4. Successfully Converted,Duration > 180s AND contacts > 1 AND converted = True,2424,5.36,18.17,81.83

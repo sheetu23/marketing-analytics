@@ -1,0 +1,13 @@
+total_clients,conversions,month_num,month,month_code,conversion_rate
+1403,142,1,January,jan,10.12
+2649,441,2,February,feb,16.65
+477,248,3,March,mar,51.99
+2932,577,4,April,apr,19.68
+13766,925,5,May,may,6.72
+5341,546,6,June,jun,10.22
+6895,627,7,July,jul,9.09
+6247,688,8,August,aug,11.01
+579,269,9,September,sep,46.46
+738,323,10,October,oct,43.77
+3970,403,11,November,nov,10.15
+214,100,12,December,dec,46.73
