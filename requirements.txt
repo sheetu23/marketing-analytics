@@ -1,0 +1,8 @@
+# Data manipulation and cleaning
+pandas>=2.0.0
+
+# Official MongoDB driver for Python
+pymongo>=4.6.0
+
+# Load environment configuration from .env file
+python-dotenv>=1.0.0

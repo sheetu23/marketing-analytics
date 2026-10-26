@@ -1,0 +1,66 @@
+# ==============================================================================
+# Docker Compose Configuration for Marketing Analytics
+#
+# Services:
+#   1. mongo: Official MongoDB database container where cleaned marketing data
+#      and pipeline aggregations are stored.
+#   2. metabase: Business Intelligence (BI) visualization tool that connects to
+#      mongo to power dashboards.
+#
+# Networking & Service Discovery:
+#   Docker Compose automatically places both services on a shared user-defined
+#   bridge network ('marketing_net'). Inside this network, DNS resolution allows
+#   Metabase to connect to MongoDB using the service name 'mongo' as its host.
+#
+# Volume Persistence:
+#   Named volumes ('mongo_data' and 'metabase_data') ensure that database records,
+#   dashboards, and user questions survive container restarts and teardowns.
+# ==============================================================================
+
+version: '3.8'
+
+services:
+  # MongoDB Database Service
+  mongo:
+    image: mongo:latest
+    container_name: marketing_mongo
+    restart: unless-stopped
+    ports:
+      # Map host port 27017 to container port 27017 for local Python access
+      - "27017:27017"
+    volumes:
+      # Persist MongoDB data directory to named volume
+      - mongo_data:/data/db
+    networks:
+      - marketing_net
+
+  # Metabase Business Intelligence Service
+  metabase:
+    image: metabase/metabase:latest
+    container_name: marketing_metabase
+    restart: unless-stopped
+    ports:
+      # Map host port 3000 to Metabase web UI
+      - "3000:3000"
+    environment:
+      # Store Metabase internal H2 application database in the persistent volume
+      - MB_DB_FILE=/metabase-data/metabase.db
+    volumes:
+      # Persist dashboard layouts, saved questions, and settings
+      - metabase_data:/metabase-data
+    depends_on:
+      - mongo
+    networks:
+      - marketing_net
+
+# Named persistent storage volumes
+volumes:
+  mongo_data:
+    driver: local
+  metabase_data:
+    driver: local
+
+# Isolated container network for inter-service communication
+networks:
+  marketing_net:
+    driver: bridge

@@ -1,0 +1,23 @@
+# Virtual environment
+venv/
+.venv/
+
+# Environment secrets
+.env
+
+# Raw and bulky datasets (UCI bank dataset should not be committed to git)
+data/
+
+# Python byte-code cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Metabase local standalone files (if run via Java jar)
+metabase/
+*.jar
+metabase.db*
+
+# IDE configurations
+.vscode/
+.idea/
